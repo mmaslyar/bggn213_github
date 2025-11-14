@@ -1,0 +1,51 @@
+---
+title: "Class 5 Lab"
+author: "Maddie Maslyar (PID A69042845)"
+format: html
+---
+
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+
+#Dot plot of cars mapping distance versus speed
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() 
+
+```
+
+```{r}
+
+#Dot plot and linear model of cars mapping distance versus speed
+
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  
+#Linear model
+  geom_smooth(method = "lm", se = FALSE) +
+
+#Label
+  labs(title = "Speed and Stopping Distances of Cars",
+       x = "Speed (mph)",
+       y = "Stopping Distance (ft)",
+       caption = "Dataset: cars") +
+  theme_bw()
+
+```
+
+```{r}
+
+# Gene expression profile of anti-viral drug treatment
+url <- "https://bioboot.github.io/bimm143_S20/class-material/up_down_expression.txt"
+genes <- read.delim(url)
+head(genes)
+
+#Plotting gene expression increase (red) and decrease (blue) of anti-viral drug treatment
+ggplot(genes, aes(x = Condition1, y = Condition2, color = State)) +
+  geom_point() +
+  scale_color_manual(values = c("blue", "gray", "red")) +
+  labs(title = "Gene Expression Changes Upon Drug Treatment",
+       x = "Control (no drug)",
+       y = "Drug Treatment")
+
+```
