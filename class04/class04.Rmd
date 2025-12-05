@@ -1,0 +1,16 @@
+---
+title: "class04"
+author: "Maddie Maslyar"
+date: "2025-12-05"
+output: pdf_document
+---
+
+```{r}
+x <- 1:50
+plot(x)
+plot(x, col="violet")
+plot(x, sin(x), typ="l", col = "turquoise", lwd=3)
+
+log(10, 10)
+```
+
