@@ -1,0 +1,55 @@
+---
+title: "Lab 06"
+author: "Maddie Maslyar (PID A69042845)"
+date: "2025-10-20"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# R Functions Lab
+
+I am submitting the grade function R script instead of answering the "Generate Random Protein In Fasta Format" prompt because I was absent from class.
+
+Q1. Write a function grade() to determine an overall grade from a vector of student homework assignment scores dropping the lowest single score.
+
+```{r}
+
+# Function grade() determines grade from a vector of student homework assignment 
+#scores dropping the lowest score.
+grade <- function(x) {
+  # Set missing homework values (NA) to zero
+  x[is.na(x)] <- 0
+  # Exclude the lowest homework score
+  mean(x[-which.min(x)])
+}
+
+```
+
+
+
+```{r}
+# Input example gradebook in csv format to test grade().
+url <- "https://tinyurl.com/gradeinput"
+gradebook <- read.csv(url, row.names=1)
+```
+
+Q2. Who is the top scoring student in the gradebook?
+
+```{r}
+results <- apply(gradebook, 1, grade)
+sort(results, decreasing = T)
+```
+
+**Student 18 is the top scoring student.**
+
+Q3. Determine the most difficult homework assignment.
+
+```{r}
+hw.mean <- apply(gradebook, 2, mean, na.rm = T)
+hw.median <- apply(gradebook, 2, median, na.rm = T)
+sort(hw.mean)
+sort(hw.median)
+```
+
+**HW3 and HW2 were the most difficult assignments. HW3 has the lowest mean and HW2 has the lowest median.**

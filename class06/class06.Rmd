@@ -1,0 +1,31 @@
+---
+title: "Class 6 Lab"
+author: "Maddie Maslyar (A69042845)"
+date: "2025-10-20"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+#Code takes PDB IDs and plots the B factor of the protein structures after removing polyA tail
+# Input is PBD ID
+# Output is B factor vs. residue plot
+
+#install.packages("bio3d") if not previously installed
+library(bio3d)
+bfactor_plot <- function(pdb_input) {
+#Read pdb file
+  pdb <- read.pdb(pdb_input)
+#Trim amino acid polyA tail
+  pdb.chainA <- trim.pdb(pdb, chain = "A", elety = "CA")
+#Get B factor  
+  pdb.b <- pdb.chainA$atom$b
+#Plot B factor
+  plotb3(pdb.b, sse = pdb.chainA, typ = "l", ylab = "Bfactor")
+}
+
+#PDB 4AKE used as example of functional code
+bfactor_plot("4AKE")
+
+```

@@ -1,7 +1,7 @@
 ---
 title: "Class 5 Lab"
 author: "Maddie Maslyar (PID A69042845)"
-format: html
+format: gfm
 ---
 
 ```{r}
